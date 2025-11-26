@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+
+@layer components {
+    .navlink {
+        @apply text-slate-700 flex items-center gap-2 hover:bg-slate-100 p-3
+        hover:rounded-full ;
+    }
+
+    .navlink.active {
+        @apply bg-red-300 text-white rounded-full uppercase;
+    }
+}
