@@ -1,11 +1,16 @@
 import React from 'react';
-import LoginForm from '../features/authentication/LoginForm';
+import { Outlet } from 'react-router-dom';
+import HeaderMain from '../components/HeaderMain';
 
 const Login = () => {
   return (
-    <div className='flex justify-center'>
-      <LoginForm />
-    </div>
+    <>
+      <HeaderMain />
+
+      <div className='flex justify-center'>
+        <Outlet />
+      </div>
+    </>
   );
 };
 

@@ -2,19 +2,34 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SideBar from './SideBar';
 import Header from './Header';
+import Profile from '../pages/Profile';
+import Logo from './Logo';
+import ToggleMenu from './ToggleMenu';
 import { useLayOut } from '../contexts/LayOutContext';
 
 const AppLayOut = () => {
-  //Toggle state for mobile menu
-  const { isOpen } = useLayOut()
+  const { isOpen } = useLayOut();
 
   return (
-
-
     <div className='grid grid-cols-1 md:grid-cols-[12rem_1fr] grid-rows-[auto_1fr] h-screen'>
 
       <header className='col-span-1 md:col-span-2'>
-        <Header />
+        <Header>
+          {/* Hamburger toggle for mobile */}
+          <ToggleMenu />
+
+
+          <Logo />
+
+          <input
+            type='search'
+            placeholder='Search for your favorite item'
+            className='border rounded-full py-1.5 px-2.5 w-full max-w-[800px]' />
+
+          <div className='md:mr-40'>
+            <Profile />
+          </div>
+        </Header>
       </header>
 
 

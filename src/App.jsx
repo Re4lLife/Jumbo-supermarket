@@ -15,6 +15,9 @@ import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import AppLayOut from './components/AppLayOut';
 import LayOutProvider from './contexts/LayOutContext';
+import LoginForm from './features/authentication/LoginForm';
+import SignupForm from './features/authentication/SignupForm';
+
 
 
 
@@ -66,9 +69,14 @@ const App = () => {
           </Route>
 
 
+
+          <Route path='/login' element={<Login />} >
+            <Route path='sign-in' element={<LoginForm />} />
+            <Route path='sign-up' element={<SignupForm />} />
+          </Route>
+
           {/* Fallback 404 */}
           <Route path='*' element={<PageNotFound />} />
-          <Route path='/login' element={<Login />} />
 
         </Routes>
       </BrowserRouter >
