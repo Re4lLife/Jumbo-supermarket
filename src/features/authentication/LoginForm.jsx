@@ -9,13 +9,12 @@ const LoginForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-
-
 
 
 
@@ -42,9 +41,10 @@ const LoginForm = () => {
         <form
             className='flex flex-col items-center'
             onSubmit={handleSubmit(onSubmit)}>
-            <FormRow label='email' id='email' error={errors?.email?.message}>
+            <FormRow label='Email' id='email' error={errors?.email?.message}>
                 <input
                     type='email'
+                    disabled={isLoading}
                     placeholder='Enter your email here'
                     {...register('email', {
                         required: "This field is required",
@@ -56,9 +56,10 @@ const LoginForm = () => {
                 />
             </FormRow>
 
-            <FormRow label='password' id='password' error={errors?.password?.message}>
+            <FormRow label='Password' id='password' error={errors?.password?.message}>
                 <input
                     type='password'
+                    disabled={isLoading}
                     placeholder='Enter your email here'
                     {...register('password', {
                         required: "This field is required",
@@ -68,7 +69,9 @@ const LoginForm = () => {
 
             <Button
                 type='primary'
-                disabled={isLoading}>Login</Button>
+                disabled={isLoading}>
+                Login
+            </Button>
         </form>
     );
 };

@@ -1,9 +1,14 @@
 import React from 'react';
+import HeaderMain from '../components/HeaderMain';
 
-const Home = () => {
+
+const Home = () => {  
+
   return (
-    <div>Home component</div>
+    <>
+      <HeaderMain />
+    </>
   );
-};
+}
 
 export default Home;
