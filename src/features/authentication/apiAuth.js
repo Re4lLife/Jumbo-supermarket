@@ -1,4 +1,5 @@
 import supabase from '../../supabaseClient';
+import { queryClient } from '../../App';
 
 /**
  * Handles user login with email and password.
@@ -11,7 +12,7 @@ export async function login({ email, password }) {
         password,
     });
 
-    if(error) {
+    if (error) {
         throw new Error(error.message)
     }
 
@@ -38,3 +39,32 @@ export async function signUp({ email, password }) {
     // data.user contains the newly created user object
     return data.user;
 }
+
+//Get current logged in user
+
+export async function getCurrentUser() {
+    // Check the currently active session
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (!sessionData.session) return null; // No active session
+
+    // If a session exists, fetch the user data
+    const { data, error } = await supabase.auth.getUser();
+    
+
+    if (error) throw new Error(error.message);
+
+    return data?.user;
+}
+
+
+//SignOut functionality
+export async function logout() {
+
+    const { error } = await supabase.auth.signOut();
+    
+    // ⚠️ CRITICAL: Invalidate and remove the user query cache on sign-out
+    queryClient.removeQueries({ queryKey: ['user'] });
+
+    if (error) throw new Error(error.message);
+}
+

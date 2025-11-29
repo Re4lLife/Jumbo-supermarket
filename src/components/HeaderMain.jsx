@@ -25,11 +25,11 @@ const HeaderMain = () => {
 
 
                     <div className='flex items-center gap-4 md:gap-14'>
-                        <Button type='primary' onClick={() => navigate('/login/sign-in')}>
+                        <Button type='primary' onClick={() => navigate('/auth/sign-in')}>
                             Login
                         </Button>
 
-                        <Button type='primary' onClick={() => navigate('/login/sign-up')}>
+                        <Button type='primary' onClick={() => navigate('/auth/sign-up')}>
                             Sign up
                         </Button>
                     </div>

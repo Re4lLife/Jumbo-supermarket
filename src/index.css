@@ -3,11 +3,14 @@
 
 @layer components {
     .navlink {
-        @apply text-slate-700 flex items-center gap-2 hover:bg-slate-100 p-3
-        hover:rounded-full ;
+        @apply text-slate-700 flex items-center gap-2 hover:bg-slate-100 p-3 hover:rounded-full;
     }
 
     .navlink.active {
         @apply bg-red-300 text-white rounded-full uppercase;
+    }
+
+    .inputs {
+        @apply w-full px-4 py-3 tracking-widest border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-y-gray-800 focus:border-b-2 transition duration-200
     }
 }

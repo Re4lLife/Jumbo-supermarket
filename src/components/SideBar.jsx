@@ -5,7 +5,7 @@ import MainNav from './MainNav';
 const SideBar = () => {
 
   return (
-    <div className='p-3 bg-white h-full'>
+    <div className='p-3 bg-white h-screen'>
       <MainNav />
     </div>
   );

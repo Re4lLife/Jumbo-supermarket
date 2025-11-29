@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 const LayOutContext = createContext();
 
 const LayOutProvider = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <LayOutContext.Provider value={{ isOpen, setIsOpen }}>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import Home from './pages/Home';
 import Products from './pages/Products';
@@ -20,72 +22,89 @@ import SignupForm from './features/authentication/SignupForm';
 
 
 
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    }
+  }
+})
+
 
 
 const App = () => {
   return (
-    <LayOutProvider>
-      <BrowserRouter>
-        <Routes>
+    <QueryClientProvider client={queryClient}>
+      <LayOutProvider>
+        <BrowserRouter>
+          <Routes>
 
-          <Route path='/' element={<Home />} />
+            <Route path='/' element={<Home />} />
 
-          <Route element={<AppLayOut />} >
+            <Route element={<AppLayOut />} >
 
-            {/* //Public routes */}
-            <Route path='/products' element={<Products />} />
-            <Route path='/product/:id' element={<ProductPage />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/checkout' element={<CheckOut />} />
+              {/* //Public routes */}
+              <Route path='/products' element={<Products />} />
+              <Route path='/product/:id' element={<ProductPage />} />
+              <Route path='/checkout' element={<CheckOut />} />
 
-            {/* Authenticated routes */}
-            <Route
-              path="/orders"
-              element={
-                <PrivateRoute>
-                  <Orders />
-                </PrivateRoute>
-              }
-            />
+              {/* Authenticated routes */}
+              <Route
+                path='/cart'
+                element={
+                  <PrivateRoute>
+                    <Cart />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path="/orders/:id"
-              element={
-                <PrivateRoute>
-                  <OrderDetails />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path="/orders"
+                element={
+                  <PrivateRoute>
+                    <Orders />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  <Profile />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path="/orders/:id"
+                element={
+                  <PrivateRoute>
+                    <OrderDetails />
+                  </PrivateRoute>
+                }
+              />
 
-          </Route>
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                }
+              />
+
+            </Route>
 
 
 
-          <Route path='/login' element={<Login />} >
-            <Route path='sign-in' element={<LoginForm />} />
-            <Route path='sign-up' element={<SignupForm />} />
-          </Route>
+            <Route path='/auth' element={<Login />} >
+              <Route path='sign-in' element={<LoginForm />} />
+              <Route path='sign-up' element={<SignupForm />} />
+            </Route>
 
-          {/* Fallback 404 */}
-          <Route path='*' element={<PageNotFound />} />
+            {/* Fallback 404 */}
+            <Route path='*' element={<PageNotFound />} />
 
-        </Routes>
-      </BrowserRouter >
-    </LayOutProvider>
+          </Routes>
+        </BrowserRouter >
+      </LayOutProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 
 export default App;
 
 
-//Public pages like home, products, cart, and checkout can be accessed without authentication 
-// — but checkout will require login before payment.

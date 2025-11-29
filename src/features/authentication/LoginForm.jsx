@@ -38,11 +38,17 @@ const LoginForm = () => {
     }
 
     return (
+
         <form
-            className='flex flex-col items-center'
+            className='w-full text-center rounded-2xl shadow-2xl py-5 px-10 max-w-3xl flex flex-col items-center'
             onSubmit={handleSubmit(onSubmit)}>
-            <FormRow label='Email' id='email' error={errors?.email?.message}>
+                <h1 
+                className='text-2xl pb-32 font-semibold tracking-wide'
+                >--&gt; LOG IN TO YOUR ACCOUNT &lt;--</h1>
+
+            <FormRow id='email' error={errors?.email?.message}>
                 <input
+                    className='inputs'
                     type='email'
                     disabled={isLoading}
                     placeholder='Enter your email here'
@@ -56,9 +62,10 @@ const LoginForm = () => {
                 />
             </FormRow>
 
-            <FormRow label='Password' id='password' error={errors?.password?.message}>
+            <FormRow id='password' error={errors?.password?.message}>
                 <input
                     type='password'
+                    className='inputs'
                     disabled={isLoading}
                     placeholder='Enter your email here'
                     {...register('password', {
@@ -73,6 +80,7 @@ const LoginForm = () => {
                 Login
             </Button>
         </form>
+        
     );
 };
 
