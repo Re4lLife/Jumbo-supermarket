@@ -7,7 +7,7 @@ const Login = () => {
     <>
       <HeaderMain />
 
-      <div className='flex justify-center'>
+      <div className='flex justify-center mt-auto mb-auto'>
         <Outlet />
       </div>
     </>

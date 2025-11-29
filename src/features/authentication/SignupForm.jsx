@@ -24,7 +24,7 @@ const SignupForm = () => {
       const user = await signUp({ email, password });
 
       console.log('Sign up successful!', user);
-      navigate('/login/sign-in');
+      navigate('/products');
 
     } catch (err) {
       console.log(err.message);
@@ -38,12 +38,18 @@ const SignupForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='flex flex-col items-center'>
-      <FormRow lebel='Email' id='email' error={errors?.email?.message}>
+      className='w-full text-center rounded-2xl shadow-2xl py-5 px-10 max-w-3xl flex flex-col items-center'>
+
+      <h1
+        className='text-2xl pb-32 font-semibold tracking-wide'
+      >--&gt; CREATE AN ACCOUNT &lt;--</h1>
+
+      <FormRow  id='email' error={errors?.email?.message}>
         <input
+          className='inputs'
           type='email'
           disabled={isLoading}
-          placeholder='Enter your email here.'
+          placeholder='Enter email here.'
           {...register('email', {
             required: "This field is required.",
             pattern: {
@@ -55,11 +61,12 @@ const SignupForm = () => {
         />
       </FormRow>
 
-      <FormRow lebel='Password' id='password' error={errors?.password?.message}>
+      <FormRow id='password' error={errors?.password?.message}>
         <input
+          className='inputs'
           type='password'
           disabled={isLoading}
-          placeholder='Enter your password here.'
+          placeholder='Enter password here.'
           {...register('password', {
             required: "This firld is required.",
             minLength: {
@@ -76,19 +83,21 @@ const SignupForm = () => {
         />
       </FormRow>
 
-      <FormRow lebel='Confirm password' id='confirmPassword' error={errors?.confirmPassword?.message}>
+      <FormRow id='confirmPassword' error={errors?.confirmPassword?.message}>
         <input
           type='password'
+          className='inputs'
           disabled={isLoading}
-          placeholder='Confirm your password.'
+          placeholder='Confirm password.'
           {...register('confirmPassword', {
             required: "This field is required",
-            validate: (value) => 
+            validate: (value) =>
               value === getValues().password || "Passwords needs to match"
           }
           )}
         />
       </FormRow>
+
 
       <Button
         type='primary'
