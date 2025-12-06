@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Button = ({ children, type, disabled, onClick }) => {
-    const base = 'bg-slate-500 text-white py-2 px-5 rounded-md'
+    const base = 'bg-slate-500 text-white py-2 px-6 rounded-md'
 
     const styles = {
         primary: `${base}`,
