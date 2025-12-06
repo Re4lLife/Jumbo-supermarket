@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import HeaderMain from '../components/HeaderMain';
 
-const Login = () => {
+const LoginPage = () => {
   return (
     <>
       <HeaderMain />
@@ -14,4 +14,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

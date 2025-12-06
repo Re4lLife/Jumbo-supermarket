@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import FormRow from '../../components/FormRow';
 import Button from '../../components/Button';
 import { signUp } from './apiAuth';
+import toast from 'react-hot-toast';
+import Loading from '../../components/Loading';
 
 const SignupForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -23,11 +25,17 @@ const SignupForm = () => {
     try {
       const user = await signUp({ email, password });
 
-      console.log('Sign up successful!', user);
-      navigate('/products');
+      toast.success(`Welcome, ${user.email.split('@')[0]}!  🎉🎆🎇`);
+
+      setTimeout(() => {
+        navigate('/products', { replace: true });
+
+      }, 3000); //  3 seconds (matches default toast duration)
 
     } catch (err) {
       console.log(err.message);
+
+      toast.error('There was an error signing up');
 
     } finally {
       setIsLoading(false);
@@ -44,7 +52,7 @@ const SignupForm = () => {
         className='text-2xl pb-32 font-semibold tracking-wide'
       >--&gt; CREATE AN ACCOUNT &lt;--</h1>
 
-      <FormRow  id='email' error={errors?.email?.message}>
+      <FormRow id='email' error={errors?.email?.message}>
         <input
           className='inputs'
           type='email'
@@ -102,7 +110,7 @@ const SignupForm = () => {
       <Button
         type='primary'
         disabled={isLoading}>
-        Sign up
+        {isLoading ? <Loading /> : 'Sign Up'}
       </Button>
     </form>
   );

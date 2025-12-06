@@ -5,6 +5,8 @@ const ToggleMenu = () => {
     //Toggle state for mobile menu
     const { setIsOpen } = useLayOut();
 
+  
+
     return (
         <div
             onClick={() => setIsOpen(prev => !prev)}

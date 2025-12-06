@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SideBar from './SideBar';
 import Header from './Header';
-import Profile from '../pages/Profile';
+import Profile from '../pages/ProfilePage';
 import Logo from './Logo';
 import ToggleMenu from './ToggleMenu';
 import { useLayOut } from '../contexts/LayOutContext';
@@ -49,7 +49,7 @@ const AppLayOut = () => {
 
 
 
-      <div className='bg-pink-500 p-6 overflow-y-auto 
+      <div className='p-6 overflow-y-auto 
           //Mobile: starts below header (row-start-2)
           //Desktop (md:): Starts in the second column (col-start-2)
           row-start-2 md:col-start-2'>
