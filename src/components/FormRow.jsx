@@ -1,8 +1,6 @@
-// FormRow.jsx
-
 import React from "react";
 
-const FormRow = ({ children, id, error }) => {
+const FormRow = ({ children, error }) => {
   return (
 
     <div className='flex flex-col mb-20 py-3 w-full max-w-md mx-auto'>

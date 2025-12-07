@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCategories, getProducts } from "../features/products/apiProducts";
-import { useActiveCategory } from "../contexts/CategoryContext";
+import { useGlobalState } from "../contexts/GlobalStateContext";
 
 
 
 export function useProducts() {
-    const { activeCategory } = useActiveCategory();
+    const { activeCategory } = useGlobalState();
 
     const queryFn = activeCategory === 'all'
     ? getProducts

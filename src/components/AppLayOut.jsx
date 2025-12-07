@@ -5,10 +5,11 @@ import Header from './Header';
 import Profile from '../pages/ProfilePage';
 import Logo from './Logo';
 import ToggleMenu from './ToggleMenu';
-import { useLayOut } from '../contexts/LayOutContext';
+import { useGlobalState } from '../contexts/GlobalStateContext';
+
 
 const AppLayOut = () => {
-  const { isOpen } = useLayOut();
+  const { isOpen, searchTerm, setSearchTerm } = useGlobalState();
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-[12rem_1fr] grid-rows-[auto_1fr] h-screen'>
@@ -18,13 +19,14 @@ const AppLayOut = () => {
           {/* Hamburger toggle for mobile */}
           <ToggleMenu />
 
-
           <Logo />
 
           <input
             type='search'
-            placeholder='Search for your favorite item'
-            className='border rounded-full py-1.5 px-2.5 w-full max-w-[800px]' />
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder='Search for your favorite items'
+            className='border rounded-full py-1.5 px-2.5 w-full max-w-[800px] focus:border-blue-400 focus:outline-none' />
 
           <div className='md:mr-40'>
             <Profile />
@@ -49,12 +51,12 @@ const AppLayOut = () => {
 
 
 
-      <div className='p-6 overflow-y-auto 
+      <main className='p-6 overflow-y-auto 
           //Mobile: starts below header (row-start-2)
           //Desktop (md:): Starts in the second column (col-start-2)
           row-start-2 md:col-start-2'>
         <Outlet />
-      </div>
+      </main>
 
     </div >
 

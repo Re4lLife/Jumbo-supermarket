@@ -2,14 +2,13 @@ import React from 'react';
 import { useProductsCategories } from '../../hooks/useProductsCategories';
 import Loading from '../../components/Loading';
 import Error from '../../components/Error';
-import { useActiveCategory } from '../../contexts/CategoryContext';
-import { useLayOut } from '../../contexts/LayOutContext';
+import { useGlobalState } from '../../contexts/GlobalStateContext';
 
 
 const ProductsCategories = () => {
     const { isLoading, error, categories } = useProductsCategories();
-    const { setActiveCategory } = useActiveCategory();
-    const { setIsOpen } = useLayOut();
+    const { setActiveCategory } = useGlobalState();
+    const { setIsOpen } = useGlobalState();
 
     if (isLoading) return <Loading />
     if (error) return <Error name='categories' />

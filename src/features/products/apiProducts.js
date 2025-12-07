@@ -1,8 +1,8 @@
 import toast from "react-hot-toast";
 
+
+
 const API_URL = 'https://dummyjson.com';
-
-
 
 export async function getProducts() {
     try {
@@ -32,8 +32,6 @@ export async function getCategories(category) {
 
 
     const url = `${baseUrl}?limit=0`;
-
-    console.log(url);
 
     try {
         const res = await fetch(url);
