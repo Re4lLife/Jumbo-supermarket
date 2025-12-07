@@ -17,10 +17,9 @@ import LoginPage from './pages/LoginPage';
 
 import PrivateRoute from './components/PrivateRoute';
 import AppLayOut from './components/AppLayOut';
-import LayOutProvider from './contexts/LayOutContext';
 import LoginForm from './features/authentication/LoginForm';
 import SignupForm from './features/authentication/SignupForm';
-import CategoryProvider from './contexts/CategoryContext';
+import GlobalStateProvider from './contexts/GlobalStateContext';
 
 
 
@@ -37,8 +36,7 @@ export const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <LayOutProvider>
-        <CategoryProvider>
+        <GlobalStateProvider>
           <BrowserRouter>
             <Routes>
 
@@ -102,8 +100,7 @@ const App = () => {
 
             </Routes>
           </BrowserRouter >
-        </CategoryProvider>
-      </LayOutProvider>
+        </ GlobalStateProvider>
       <ReactQueryDevtools initialIsOpen={false} />
       <Toaster
         position='top-center'
