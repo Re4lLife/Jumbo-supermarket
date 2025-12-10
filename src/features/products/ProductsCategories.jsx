@@ -22,7 +22,7 @@ const ProductsCategories = () => {
        }
 
     return (
-        <ul className='flex flex-col gap-6 h-[40vh] overflow-y-auto bg-slate-50 rounded-4xl p-4'>
+        <ul className='flex flex-col gap-6 h-[40vh] overflow-y-auto bg-slate-50 rounded-4xl p-4 custom-category-scrollbar'>
             {categoryList.map(category => (
                 <li key={category}
                     onClick={() => handleCategorization(category)}

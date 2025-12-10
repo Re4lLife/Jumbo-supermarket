@@ -1,5 +1,44 @@
 @import "tailwindcss";
 
+/* Applied to the container of aside and main element in AppLayOut component */
+.scrollable-content {
+  /* For Chrome, Safari, and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* For IE, Edge, and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+/* Custom Scrollbar Styling for Category List */
+.custom-category-scrollbar::-webkit-scrollbar {
+    width: 10px; /* Adjusted slightly for a common size */
+    height: 10px; /* Needed for horizontal, but good practice */
+}
+
+.custom-category-scrollbar::-webkit-scrollbar-track {
+    background: #dfd7d7; 
+    border-radius: 5px; /* Added border-radius for cleaner track */
+}
+
+.custom-category-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbcad8; /* Using a nice indigo color */
+    border-radius: 5px; 
+}
+
+.custom-category-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(139, 137, 146)* Darker indigo on hover */
+}
+
+/* For Firefox, which doesn't use ::-webkit-scrollbar */
+.custom-category-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(200, 199, 211) #f1f1f1; /* thumb color track color */
+}
+
+
 
 @layer components {
     .navlink {
@@ -14,3 +53,4 @@
         @apply w-full px-4 py-3 tracking-widest border-b-2 border-gray-300 focus:outline-none focus:ring-0 focus:border-y-gray-800 focus:border-b-2 transition duration-200
     }
 }
+
