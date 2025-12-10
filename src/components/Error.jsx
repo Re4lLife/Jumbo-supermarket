@@ -4,7 +4,7 @@ const Error = ({ name }) => {
   return (
     <div className='flex flex-col gap-20 my-auto justify-center'>
         <p 
-        className='text-center'>Could not display {name}. Please check your connection.</p>
+        className='text-center'>Could not display {name}. Please check your internet connection.</p>
 
 
         <img 

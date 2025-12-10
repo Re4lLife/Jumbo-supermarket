@@ -12,7 +12,7 @@ const AppLayOut = () => {
   const { isOpen, searchTerm, setSearchTerm } = useGlobalState();
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-[12rem_1fr] grid-rows-[auto_1fr] h-screen'>
+    <div className='grid grid-cols-1 md:grid-cols-[12rem_1fr] grid-rows-[auto_1fr] h-screen overflow-x-hidden'>
 
       <header className='col-span-1 md:col-span-2'>
         <Header>
@@ -26,7 +26,7 @@ const AppLayOut = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder='Search for your favorite items'
-            className='border rounded-full py-1.5 px-2.5 w-full max-w-[800px] focus:border-blue-400 focus:outline-none' />
+            className='border-red-300 border rounded-full py-1.5 px-2.5 w-full max-w-[800px] hover:border-blue-400 focus:outline-blue-300' />
 
           <div className='md:mr-40'>
             <Profile />
@@ -45,6 +45,7 @@ const AppLayOut = () => {
           md:block md:static md:translate-x-0 md:w-auto md:col-start-1
           row-start-2 md:row-start-2
           overflow-y-auto
+          scrollable-content
         `}>
         <SideBar />
       </aside>
@@ -54,7 +55,7 @@ const AppLayOut = () => {
       <main className='p-6 overflow-y-auto 
           //Mobile: starts below header (row-start-2)
           //Desktop (md:): Starts in the second column (col-start-2)
-          row-start-2 md:col-start-2'>
+          row-start-2 md:col-start-2 scrollable-content'>
         <Outlet />
       </main>
 
