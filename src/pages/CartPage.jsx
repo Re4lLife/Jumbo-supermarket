@@ -1,8 +1,11 @@
 import React from 'react';
+import CartItems from '../features/cart/CartItems';
 
 const CartPage = () => {
   return (
-    <div>CartPage component</div>
+    <div>
+      <CartItems />
+    </div>
   );
 };
 

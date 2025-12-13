@@ -13,6 +13,7 @@ const ProductItem = ({ product }) => {
 
   const discountPrice = price * (1 - discountPercentage / 100);
 
+
   return (
     <Link to={`/product/${id}`}>
       <div className='flex flex-col items-center gap-2 max-w-[100px] h-[330px]'>

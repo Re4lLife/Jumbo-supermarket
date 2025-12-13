@@ -4,7 +4,7 @@ const GlobalStateContext = createContext();
 
 const GlobalStateProvider = ({ children }) => {
     const [activeCategory, setActiveCategory] = useState('all');
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm ] = useState('');
 
     return (

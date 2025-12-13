@@ -1,0 +1,72 @@
+import toast from 'react-hot-toast';
+import supabase from '../../supabaseClient';
+
+
+export async function getCartItems() {
+
+    try {
+        let { data: cart_items, error } = await supabase
+            .from('cart_items')
+            .select('*')
+
+        if (error) {
+            console.error(error);
+            throw new Error('Supabase error fetching cart items: ' + error.message);
+        }
+
+        return cart_items;
+
+    } catch (err) {
+        toast.error('An error occurred fetching cart items');
+        throw new Error(err.message);
+
+    }
+}
+
+
+export async function updateQuantity({ item_id, quantity }) {
+    try {
+
+        const { data, error } = await supabase
+            .from('cart_items')
+            // Update the 'quantity' column with the new value 
+            .update({ quantity: quantity })
+            // Use 'item_id' to target the correct row 
+            .eq('item_id', item_id)
+            .select()
+
+
+        if (error) {
+            console.error(error);
+            throw new Error(error.message);
+        }
+
+        return data;
+
+
+    } catch (err) {
+        toast.error('Failed to update item quantity');
+        throw new Error(err.message);
+
+    }
+}
+
+
+
+
+export async function createCartItem(newItem) {
+    try {
+        const { data, error } = await supabase
+            .from('cart_items')
+            .insert([newItem]) // newItem already contains the thumbnail URL
+            .select()
+            .single();
+
+        if (error) throw new Error(error.message);
+        return data;
+
+    } catch (err) {
+        toast.error('Failed to add item to cart');
+        throw new Error(err.message);
+    }
+}
