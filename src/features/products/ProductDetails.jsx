@@ -5,11 +5,13 @@ import Error from '../../components/Error';
 import Loading from '../../components/Loading'
 import { formatCurrency } from '../../utils/utils';
 import Button from '../../components/Button';
+import { useAddItemToCart } from '../../hooks/useAddItemToCart';
 
 
 const ProductDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { isAdding, addItem } = useAddItemToCart();
 
 
     const {
@@ -37,19 +39,32 @@ const ProductDetails = () => {
 
     } = productDetails;
 
-    const finalPrice = price * (1 - discountPercentage / 100);
+   
 
+    const finalPrice = Number((price * (1 - discountPercentage / 100)).toFixed(2));
 
+    function handleAddToCart(e) {
+        const newItem = {
+            item_id: productDetails.id,
+            quantity: 1,
+            title: productDetails.title,
+            discount_price: finalPrice,
+            brand: productDetails.brand,
+            thumbnail: productDetails.images[0]
+        }
+        addItem(newItem);
+        e.preventDefault();
+    }
 
     return (
         <div className="container mx-auto px-4 py-8 md:py-12 min-h-screen">
-            <button 
+            <button
                 onClick={() => navigate(-1)} // 3. Go back one step
                 className="flex items-center text-indigo-600 hover:text-indigo-800 mb-4 font-medium transition duration-150"
             >
                 {/* Simple left arrow SVG */}
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
                 Back to Products
             </button>
@@ -136,8 +151,11 @@ const ProductDetails = () => {
 
                         {/* Purchase Button and Quantity Selector */}
                         <div className="pt-4">
-                            <Button type='primary' className="w-full bg-indigo-600 text-white text-lg font-semibold py-3 rounded-xl hover:bg-indigo-700 transition duration-300 shadow-md">
-                                Add to Cart
+                            <Button 
+                            type='primary' 
+                            onClick={handleAddToCart}
+                            className="w-full bg-indigo-600 text-white text-lg font-semibold py-3 rounded-xl hover:bg-indigo-700 transition duration-300 shadow-md">
+                                {isAdding ? 'Adding...' : 'Add to Cart'}
                             </Button>
                             {/* Quantity selector logic would go here */}
                         </div>
