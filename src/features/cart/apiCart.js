@@ -24,6 +24,8 @@ export async function getCartItems() {
 }
 
 
+
+
 export async function updateQuantity({ item_id, quantity }) {
     try {
 
@@ -68,5 +70,27 @@ export async function createCartItem(newItem) {
     } catch (err) {
         toast.error('Failed to add item to cart');
         throw new Error(err.message);
+    }
+}
+
+
+
+
+export async function deleteCartItem(item_id) {
+    try {
+        const { data, error } = await supabase
+            .from('cart_items')
+            .delete()
+            .eq('item_id', item_id);
+
+        if (error) {
+            throw new Error('Could not delete item: ' + error.message);
+        }
+        return data;
+
+    } catch (err) {
+        toast.error('Failed to delete item from cart');
+        throw new Error(err.message);
+
     }
 }

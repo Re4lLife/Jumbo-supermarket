@@ -157,17 +157,12 @@ const ProductDetails = () => {
                             className="w-full bg-indigo-600 text-white text-lg font-semibold py-3 rounded-xl hover:bg-indigo-700 transition duration-300 shadow-md">
                                 {isAdding ? 'Adding...' : 'Add to Cart'}
                             </Button>
-                            {/* Quantity selector logic would go here */}
                         </div>
 
                     </div>
                 </div>
 
-                {/* Optional: Related Products / Reviews Section */}
-                {/* <section className="mt-12 border-t pt-8">
-                    <h2 className="text-2xl font-bold mb-4">Customer Reviews</h2>
-                    {/* ... reviews content ... *}
-                </section> */}
+              
             </div>
         </div>
     );

@@ -5,7 +5,7 @@ import { MdOutlineHistory } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import { logout } from '../features/authentication/apiAuth';
 import toast from 'react-hot-toast';
-import { useClickOut } from '../hooks/useClickOut';
+import useClickOut from '../hooks/useClickOut';
 import Categories from './Categories';
 import { useGlobalState } from '../contexts/GlobalStateContext';
 
