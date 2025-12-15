@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export function useClickOut(handler) {
+export default function useClickOut(handler) {
     const el = useRef()
 
     //This is to listen for a click outside of the modal to close the modal also.
