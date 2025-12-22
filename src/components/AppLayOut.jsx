@@ -2,10 +2,10 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SideBar from './SideBar';
 import Header from './Header';
-import Profile from '../pages/ProfilePage';
 import Logo from './Logo';
 import ToggleMenu from './ToggleMenu';
 import { useGlobalState } from '../contexts/GlobalStateContext';
+import ProfileDropDown from './../features/profile/ProfileDropDown';
 
 
 const AppLayOut = () => {
@@ -26,10 +26,10 @@ const AppLayOut = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder='Search for your favorite items'
-            className='border-red-300 border rounded-full py-1.5 px-2.5 w-full max-w-[800px] hover:border-blue-400 focus:outline-blue-300' />
+            className='border-red-300 border shadow-2xl rounded-full py-1.5 px-2.5 w-full sm:min-w-[90px] max-w-[800px] hover:border-blue-400 focus:outline-blue-300' />
 
           <div className='md:mr-40'>
-            <Profile />
+            <ProfileDropDown />
           </div>
         </Header>
       </header>

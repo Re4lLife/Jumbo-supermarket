@@ -1,37 +1,18 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { HiOutlineHomeModern, HiOutlineShoppingCart } from "react-icons/hi2";
 import { MdOutlineHistory } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
-import { logout } from '../features/authentication/apiAuth';
-import toast from 'react-hot-toast';
 import useClickOut from '../hooks/useClickOut';
 import Categories from './Categories';
 import { useGlobalState } from '../contexts/GlobalStateContext';
+import { useLogOut } from '../hooks/useLogOut';
 
 
 
 const MainNav = () => {
-    const navigate = useNavigate()
     const { setIsOpen } = useGlobalState();
-
-    async function signOut() {
-        try {
-            // 1. Await the asynchronous logout operation
-            await logout();
-            toast.success('Logging out...')
-            // 2. Only navigate once the session is officially ended
-            setTimeout(() => {
-                navigate('/auth/sign-in', { replace: true });
-            }, 3000);
-
-        } catch (error) {
-            toast.error('Logout failed');
-            // Optional: might still navigate.
-            navigate('/auth/sign-in', { replace: true });
-            throw new Error(error.message);
-        }
-    }
+    const { logout, isLoggingOut } = useLogOut();
 
 
     function closeSideBar() {
@@ -81,10 +62,20 @@ const MainNav = () => {
 
                 <li className='relative'>
                     <NavLink
-                        onClick={signOut}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            logout();
+                        }}
                         className='flex items-center py-3 px-5 gap-2 hover:bg-slate-200 hover:rounded-full'>
                         <CiLogout />
-                        <span>Log Out</span>
+                        <span>
+                            {
+                                isLoggingOut ?
+                                    'Logging out...'
+                                    :
+                                    'Log Out'
+                            }
+                        </span>
                     </NavLink>
                 </li>
 

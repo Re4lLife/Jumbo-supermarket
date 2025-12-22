@@ -6,10 +6,15 @@ import Button from '../../components/Button';
 import { signUp } from './apiAuth';
 import toast from 'react-hot-toast';
 import Loading from '../../components/Loading';
+import { useLogOut } from '../../hooks/useLogOut';
+
+
+
 
 const SignupForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { logout, isLoggingOut } = useLogOut()
 
   const {
     register,
@@ -23,18 +28,19 @@ const SignupForm = () => {
     setIsLoading(true);
 
     try {
-      const user = await signUp({ email, password });
+      await signUp({ email, password });
 
-      toast.success(`Welcome, ${user.email.split('@')[0]}!  🎉🎆🎇`);
+      logout();
+
+      toast.success(`Account created! Please verify your email.`);
 
       setTimeout(() => {
-        navigate('/products', { replace: true });
+        navigate('/auth/sign-in', { replace: true });
 
       }, 3000); //  3 seconds (matches default toast duration)
 
     } catch (err) {
       console.log(err.message);
-
       toast.error('There was an error signing up');
 
     } finally {
@@ -110,7 +116,7 @@ const SignupForm = () => {
       <Button
         type='primary'
         disabled={isLoading}>
-        {isLoading ? <Loading /> : 'Sign Up'}
+        {isLoading || isLoggingOut ? 'Loading...' : 'Sign Up'}
       </Button>
     </form>
   );
