@@ -1,31 +1,20 @@
 import React from 'react';
 
-const Button = ({ children, type, disabled, onClick }) => {
-    const base = 'bg-slate-500 text-white py-2 px-6 rounded-md'
+const Button = ({ children, type = 'primary', htmlType = 'submit', disabled, onClick }) => {
+    const base = 'bg-slate-500 text-white py-2 px-6 rounded-md';
 
     const styles = {
         primary: `${base}`,
-        small: `${base}`
-    }
-
-    if (onClick) {
-        return (
-            <button className={styles[type]} onClick={onClick}>
-                {children}
-            </button>
-        )
-    }
-
-    if (disabled) {
-        return (
-            <button className={styles[type]} disabled={disabled}>
-                {children}
-            </button>
-        )
-    }
+        small: `${base} text-sm px-4`
+    };
 
     return (
-        <button className={styles[type]}>
+        <button
+            type={htmlType} // 🎯 This prevents accidental form submission
+            className={styles[type] || styles.primary}
+            onClick={onClick}
+            disabled={disabled}
+        >
             {children}
         </button>
     );

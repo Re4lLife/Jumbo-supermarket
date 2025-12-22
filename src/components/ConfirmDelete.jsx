@@ -10,22 +10,21 @@ const ConfirmDelete = ({ title, onConfirm, disabled, onCloseModal }) => {
       </p>
 
       <div className="flex gap-4 justify-end">
-        <Button 
-          type='primary' 
-          variation="secondary" 
-          disabled={disabled} 
+        <Button
+          type='primary'
+          variation="secondary"
+          disabled={disabled}
           onClick={onCloseModal}
           className="px-6 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition"
         >
           Cancel
         </Button>
 
-        <button 
-          className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition disabled:bg-red-300" 
+        <button
+          className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition disabled:bg-red-300"
           disabled={disabled}
           onClick={() => {
             onConfirm();
-            // Modal closes automatically via query invalidation or manual call
           }}
         >
           {disabled ? 'Deleting...' : 'Delete'}

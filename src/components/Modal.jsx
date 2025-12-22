@@ -25,6 +25,13 @@ function Open({ name, children }) {
 }
 
 
+function Close({ children }) {
+    const { close } = useModalContext();
+
+    return cloneElement(children, { onClick: () => close() });
+}
+
+
 function Window({ children, name }) {
     const { openName, close } = useModalContext();
     const  el = useClickOut(close)
@@ -46,6 +53,7 @@ function Window({ children, name }) {
 }
 
 Modal.Open = Open;
+Modal.Close = Close;
 Modal.Window = Window;
 
 export default Modal;

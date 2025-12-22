@@ -25,7 +25,7 @@ const ProductList = () => {
 
      const products = useFilteredProducts({ products: allAndCategorizedProducts, searchTerm });
 
-    console.log(products)
+
 
     if (isLoading) return <Loading />;
     if (error) return <Error name='products' />;
