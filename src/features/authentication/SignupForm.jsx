@@ -5,7 +5,6 @@ import FormRow from '../../components/FormRow';
 import Button from '../../components/Button';
 import { signUp } from './apiAuth';
 import toast from 'react-hot-toast';
-import Loading from '../../components/Loading';
 import { useLogOut } from '../../hooks/useLogOut';
 
 
