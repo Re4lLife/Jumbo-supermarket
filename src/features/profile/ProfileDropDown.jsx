@@ -47,7 +47,7 @@ const ProfileDropDown = () => {
                     )}
                 </div>
 
-                <MdOutlineExpandMore className={`text-xl font-bold text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                <MdOutlineExpandMore strokeWidth={2} className={`text-xl font-bold transition-transform ${isOpen ? 'rotate-180' : ''}`} />
             </div>
 
 

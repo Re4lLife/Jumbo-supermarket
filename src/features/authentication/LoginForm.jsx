@@ -50,7 +50,7 @@ const LoginForm = () => {
     return (
 
         <form
-            className='w-full text-center rounded-2xl shadow-2xl py-5 px-10 max-w-3xl flex flex-col items-center'
+            className='w-full max-w-6xl text-center rounded-2xl shadow-2xl py-5 px-10 flex flex-col items-center'
             onSubmit={handleSubmit(onSubmit)}>
             <h1
                 className='text-2xl pb-32 font-semibold tracking-wide'

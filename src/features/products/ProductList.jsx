@@ -37,22 +37,24 @@ const ProductList = () => {
 
     return (
         <Swiper
-
             modules={[Pagination, Autoplay, Grid]}
 
+            className="h-[80vh] sm:h-[75vh] lg:h-[82vh] w-full"
+            // className="h-[500px] sm:h-[550px] lg:h-[550px] w-full" 
             grid={{
                 rows: 2, 
                 fill: 'row',
             }}
-
-            
+ 
             navigation={true}
+
             pagination={{ clickable: true }}
+
             autoplay={{ delay: 4000, disableOnInteraction: false }}
 
             spaceBetween={20} 
-            slidesPerView={2} 
 
+            slidesPerView={2} 
             
             breakpoints={{
                 
@@ -67,7 +69,7 @@ const ProductList = () => {
                 },
             }}
         >
-            <div className='flex items-center flex-col'>
+            <div className='h-full w-full'>
                 {products.map((product) => (
                     <SwiperSlide key={product.id}>
                         <ProductItem product={product} />

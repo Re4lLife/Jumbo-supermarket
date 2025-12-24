@@ -51,10 +51,10 @@ const SignupForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='w-full text-center rounded-2xl shadow-2xl py-5 px-10 max-w-3xl flex flex-col items-center'>
+      className='w-full max-w-6xl text-center rounded-2xl shadow-2xl py-5 px-10 flex flex-col items-center'>
 
       <h1
-        className='text-2xl pb-32 font-semibold tracking-wide'
+        className='text-2xl pb-28 font-semibold tracking-wide'
       >--&gt; CREATE AN ACCOUNT &lt;--</h1>
 
       <FormRow id='email' error={errors?.email?.message}>

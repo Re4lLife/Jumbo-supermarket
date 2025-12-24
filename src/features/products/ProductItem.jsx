@@ -16,7 +16,7 @@ const ProductItem = ({ product }) => {
 
   return (
     <Link to={`/product/${id}`}>
-      <div className='flex flex-col items-center gap-2 max-w-[100px] h-[330px]'>
+      <div className='flex flex-col items-center gap-2 max-w-[100px]'>
         <img
           src={thumbnail}
           alt={`Image of ${title}`}
@@ -30,10 +30,13 @@ const ProductItem = ({ product }) => {
 
         <span>{formatCurrency(discountPrice)}</span>
 
-        <Button type='primary'><FaCartPlus /></Button>
+        <Button type='primary' className='animate-bounce'>PICK ME!</Button>
       </div >
     </Link>
   );
 };
 
 export default ProductItem;
+
+
+{/* <FaCartPlus />  */}
