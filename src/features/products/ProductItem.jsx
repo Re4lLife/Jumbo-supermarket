@@ -1,7 +1,6 @@
 import React from 'react';
 import { formatCurrency } from '../../utils/utils';
 import Button from '../../components/Button';
-import { FaCartPlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
 
@@ -37,6 +36,3 @@ const ProductItem = ({ product }) => {
 };
 
 export default ProductItem;
-
-
-{/* <FaCartPlus />  */}
