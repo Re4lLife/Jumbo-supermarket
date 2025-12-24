@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+
+html {
+  font-size: 80%; 
+}
+
+body {
+  height: 100vh;
+}
+
+
 /* Applied to the container of aside and main element in AppLayOut component */
 .scrollable-content {
   /* For Chrome, Safari, and Opera */

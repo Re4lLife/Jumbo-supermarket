@@ -116,7 +116,7 @@ const App = () => {
 
           },
           style: {
-            fontSize: '17px',
+            fontSize: '90%',
             padding: '16px 25px',
             maxWidth: '510px'
 

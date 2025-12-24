@@ -53,8 +53,6 @@ const AppLayOut = () => {
 
 
       <main className='p-6 overflow-y-auto 
-          //Mobile: starts below header (row-start-2)
-          //Desktop (md:): Starts in the second column (col-start-2)
           row-start-2 md:col-start-2 scrollable-content'>
         <Outlet />
       </main>

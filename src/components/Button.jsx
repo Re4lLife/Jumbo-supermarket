@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Button = ({ children, type = 'primary', htmlType = 'submit', disabled, onClick }) => {
-    const base = 'bg-slate-500 text-white py-2 px-6 rounded-md';
+const Button = ({ children, type = 'primary', className = '', htmlType = 'submit', disabled, onClick }) => {
+    const base = 'bg-slate-500 text-white py-2 px-6 rounded-md transition-all';
 
     const styles = {
         primary: `${base}`,
@@ -10,8 +10,9 @@ const Button = ({ children, type = 'primary', htmlType = 'submit', disabled, onC
 
     return (
         <button
-            type={htmlType} // 🎯 This prevents accidental form submission
-            className={styles[type] || styles.primary}
+            type={htmlType}
+            // 🎯 Combine internal styles AND the passed-in className
+            className={`${styles[type] || styles.primary} ${className}`}
             onClick={onClick}
             disabled={disabled}
         >

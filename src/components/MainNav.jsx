@@ -50,7 +50,7 @@ const MainNav = () => {
                         to='/orders'
                         onClick={closeSideBar}
                         className='navlink'>
-                        <MdOutlineHistory /> <span>Orders</span>
+                        <MdOutlineHistory /> <span>History</span>
                     </NavLink>
                 </li>
 
