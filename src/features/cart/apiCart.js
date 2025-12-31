@@ -8,10 +8,10 @@ export async function getCartItems() {
         let { data: cart_items, error } = await supabase
             .from('cart_items')
             .select('*')
+            
 
         if (error) {
-            console.error(error);
-            throw new Error('Supabase error fetching cart items: ' + error.message);
+            throw new Error(error.message);
         }
 
         return cart_items;
@@ -39,7 +39,6 @@ export async function updateQuantity({ item_id, quantity }) {
 
 
         if (error) {
-            console.error(error);
             throw new Error(error.message);
         }
 
@@ -84,7 +83,7 @@ export async function deleteCartItem(item_id) {
             .eq('item_id', item_id);
 
         if (error) {
-            throw new Error('Could not delete item: ' + error.message);
+            throw new Error(error.message);
         }
         return data;
 
@@ -94,3 +93,17 @@ export async function deleteCartItem(item_id) {
 
     }
 }
+
+
+export const clearCart = async (userId) => {
+    const { error } = await supabase
+        .from('cart_items')
+        .delete()
+        .eq('user_id', userId);
+
+    if (error) {
+        console.error("Error clearing cart:", error.message);
+        toast.error('Error clearing cart');
+
+    }
+};

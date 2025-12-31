@@ -6,21 +6,36 @@ import Loading from '../../components/Loading'
 import { formatCurrency } from '../../utils/utils';
 import Button from '../../components/Button';
 import { useAddItemToCart } from '../../hooks/useAddItemToCart';
+import { useDeleteCartItem } from '../../hooks/useDeleteCartItem';
+import { useCartItems } from '../../hooks/useCartItems';
+import Modal from '../../components/Modal';
+import ConfirmDelete from '../../components/ConfirmDelete';
 
 
 const ProductDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { isAdding, addItem } = useAddItemToCart();
-
-
+    const {
+        isAdding,
+        addItem } = useAddItemToCart();
     const {
         isLoading,
         error,
         productDetails
 
     } = useProductDetails(id);
+    const {
+        isDeleting,
+        deleteItem
 
+    } = useDeleteCartItem();
+    const {
+        cart_items
+
+    } = useCartItems();
+
+
+    const productId = Number(id);
 
 
     if (isLoading) return <Loading />;
@@ -39,22 +54,26 @@ const ProductDetails = () => {
 
     } = productDetails;
 
-   
-
     const finalPrice = Number((price * (1 - discountPercentage / 100)).toFixed(2));
 
-    function handleAddToCart(e) {
-        const newItem = {
-            item_id: productDetails.id,
-            quantity: 1,
-            title: productDetails.title,
-            discount_price: finalPrice,
-            brand: productDetails.brand,
-            thumbnail: productDetails.images[0]
+    const isInCart = cart_items?.some(item => item.item_id === productId);
+
+
+    function handleCartAction() {
+        if (!isInCart) {
+            const newItem = {
+                item_id: productId,
+                quantity: 1,
+                title: productDetails.title,
+                discount_price: finalPrice,
+                brand: productDetails.brand,
+                thumbnail: productDetails.images[0]
+
+            };
+            addItem(newItem);
         }
-        addItem(newItem);
-        e.preventDefault();
     }
+
 
     return (
         <div className="container mx-auto px-4 py-8 md:py-12 min-h-screen">
@@ -66,7 +85,7 @@ const ProductDetails = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-                Back to Products
+                Back to Home
             </button>
 
             <div className="bg-white p-6 md:p-10 rounded-xl">
@@ -149,20 +168,43 @@ const ProductDetails = () => {
                             </p>
                         </div>
 
-                        {/* Purchase Button and Quantity Selector */}
                         <div className="pt-4">
-                            <Button 
-                            type='primary' 
-                            onClick={handleAddToCart}
-                            className="w-full bg-indigo-600 text-white text-lg font-semibold py-3 rounded-xl hover:bg-indigo-700 transition duration-300 shadow-md">
-                                {isAdding ? 'Adding...' : 'Add to Cart'}
-                            </Button>
-                        </div>
 
+                            {isInCart ? (
+                                <>
+                                    <Modal>
+                                        <Modal.Open name="delete-from-details">
+                                            <Button
+                                                type="primary"
+                                                className="w-full text-lg font-semibold py-3 rounded-xl transition duration-300 shadow-md bg-red-600 hover:bg-red-700"
+                                            >
+                                                Delete from Cart
+                                            </Button>
+                                        </Modal.Open>
+
+                                        <Modal.Window name="delete-from-details">
+                                            <ConfirmDelete
+                                                title={title}
+                                                disabled={isDeleting}
+                                                onConfirm={() => deleteItem(productId)}
+                                            />
+                                        </Modal.Window>
+                                    </Modal>
+                                </>
+                            ) : (
+                                
+                                <Button
+                                    type="primary"
+                                    onClick={handleCartAction}
+                                    disabled={isAdding}
+                                    className="w-full text-lg font-semibold py-3 rounded-xl transition duration-300 shadow-md bg-indigo-600 hover:bg-indigo-700"
+                                >
+                                    {isAdding ? 'Adding...' : 'Add to Cart'}
+                                </Button>
+                            )}
+                        </div>
                     </div>
                 </div>
-
-              
             </div>
         </div>
     );

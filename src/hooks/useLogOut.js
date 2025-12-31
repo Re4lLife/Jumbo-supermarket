@@ -17,7 +17,7 @@ export function useLogOut() {
 
         onSuccess: () => {
             queryClient.removeQueries();
-
+    
             navigate('/auth/sign-in', { replace: true });
 
         },

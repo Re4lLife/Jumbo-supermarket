@@ -36,71 +36,84 @@ export const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-        <GlobalStateProvider>
-          <BrowserRouter>
-            <Routes>
+      <GlobalStateProvider>
+        <BrowserRouter>
+          <Routes>
 
-              <Route path='/' element={<HomePage />} />
+            <Route path='/' element={<HomePage />} />
 
-              <Route element={<AppLayOut />} >
+            <Route element={<AppLayOut />} >
 
-                {/* //Public routes */}
-                <Route path='/products' element={<ProductsPage />} />
-                <Route path='/product/:id' element={<ProductDetailsPage />} />
-                <Route path='/checkout' element={<CheckOutPage />} />
-
-                {/* Authenticated routes */}
-                <Route
-                  path='/cart'
-                  element={
-                    <PrivateRoute>
-                      <CartPage />
-                    </PrivateRoute>
-                  }
-                />
-
-                <Route
-                  path="/orders"
-                  element={
-                    <PrivateRoute>
-                      <OrdersPage />
-                    </PrivateRoute>
-                  }
-                />
-
-                <Route
-                  path="/orders/:id"
-                  element={
-                    <PrivateRoute>
-                      <OrderDetailsPage />
-                    </PrivateRoute>
-                  }
-                />
-
-                <Route
-                  path="/profile"
-                  element={
-                    <PrivateRoute>
-                      <ProfilePage />
-                    </PrivateRoute>
-                  }
-                />
-
-              </Route>
+              {/* //Public routes */}
+              <Route path='/products' element={<ProductsPage />} />
+              <Route path='/product/:id' element={<ProductDetailsPage />} />
 
 
 
-              <Route path='/auth' element={<LoginPage />} >
-                <Route path='sign-in' element={<LoginForm />} />
-                <Route path='sign-up' element={<SignupForm />} />
-              </Route>
 
-              {/* Fallback 404 */}
-              <Route path='*' element={<PageNotFound />} />
+              {/* Authenticated routes */}
+              <Route
+                path='/cart'
+                element={
+                  <PrivateRoute>
+                    <CartPage />
+                  </PrivateRoute>
+                }
+              />
 
-            </Routes>
-          </BrowserRouter >
-        </ GlobalStateProvider>
+              <Route
+                path="/orders"
+                element={
+                  <PrivateRoute>
+                    <OrdersPage />
+                  </PrivateRoute>
+                }
+              />
+
+              <Route
+                path="/orders/:id"
+                element={
+                  <PrivateRoute>
+                    <OrderDetailsPage />
+                  </PrivateRoute>
+                }
+              />
+              
+
+              <Route
+                path='/order-confirmation'
+                element={
+                  <PrivateRoute>
+                    <CheckOutPage />
+                  </PrivateRoute>
+                }
+              />
+
+
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute>
+                    <ProfilePage />
+                  </PrivateRoute>
+                }
+              />
+
+            </Route>
+
+
+
+            <Route path='/auth' element={<LoginPage />} >
+              <Route path='sign-in' element={<LoginForm />} />
+              <Route path='sign-up' element={<SignupForm />} />
+            </Route>
+
+            {/* Fallback 404 */}
+            <Route path='*' element={<PageNotFound />} />
+
+          </Routes>
+        </BrowserRouter >
+      </ GlobalStateProvider>
       <ReactQueryDevtools initialIsOpen={false} />
       <Toaster
         position='top-center'
