@@ -1,8 +1,11 @@
 import React from 'react';
+import Orders from '../features/order-history/Orders';
 
 const OrdersPage = () => {
   return (
-    <div>OrdersPage component</div>
+    <div>
+      <Orders />
+    </div>
   );
 };
 

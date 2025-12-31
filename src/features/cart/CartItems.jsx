@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { useCartItems } from '../../hooks/useCartItems';
 import CartItem from './CartItem';
 import Loading from '../../components/Loading';
@@ -6,14 +6,25 @@ import Error from '../../components/Error';
 import Button from '../../components/Button';
 import { formatCurrency } from '../../utils/utils';
 import { RiShoppingBag2Fill } from "react-icons/ri";
+import { handleCheckout } from '../../hooks/useCheckout';
+import { useUser } from '../../hooks/useUser';
 
 const CartItems = () => {
+  const [isCheckingOut, setIsCheckingOut] = useState(false); //Just for a 'loading' in the 'proceed to checkout' button.
   const {
     isLoading,
     cart_items,
     error,
 
   } = useCartItems();
+
+  const { user } = useUser();
+
+
+  const grandTotal = useMemo(() => {
+    return cart_items?.reduce(
+      (sum, item) => sum + (item.discount_price * item.quantity), 0);
+  }, [cart_items]);
 
 
   if (isLoading) return <Loading />
@@ -28,7 +39,16 @@ const CartItems = () => {
   }
 
 
-  const grandTotal = cart_items.reduce((sum, item) => sum + (item.discount_price * item.quantity), 0);
+  async function onCheckout() {
+    setIsCheckingOut(true);
+    try {
+      await handleCheckout(cart_items, grandTotal, user);
+
+    } finally {
+      setIsCheckingOut(false);
+
+    }
+  }
 
 
   return (
@@ -51,13 +71,13 @@ const CartItems = () => {
           <div className="bg-white p-6 rounded-xl flex flex-col gap-12 sticky top-6">
             <h2 className="text-xl font-bold text-gray-800 mb-4">Order Summary</h2>
 
-            
+
             <div className="flex justify-between border-b pb-2 mb-4">
               <span className="text-gray-600">Shipping:</span>
               <span className="font-semibold text-green-600">FREE</span>
             </div>
 
-            
+
             <div className="flex justify-between text-2xl font-bold mb-6">
               <span>Total:</span>
               <span>{formatCurrency(grandTotal)}</span>
@@ -65,8 +85,11 @@ const CartItems = () => {
 
             <Button
               type='primary'
-              className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700">
-              Proceed to Checkout
+              onClick={onCheckout}
+              disabled={isCheckingOut}
+              className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700"
+              >
+              {isCheckingOut ? 'Loading...' : 'Proceed to Checkout'}
             </Button>
           </div>
         </div>

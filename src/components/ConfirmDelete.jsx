@@ -9,13 +9,13 @@ const ConfirmDelete = ({ title, onConfirm, disabled, onCloseModal }) => {
         Are you sure you want to remove <span className="font-bold text-gray-800">{title}</span> from your cart?   This action cannot be undone.
       </p>
 
-      <div className="flex gap-4 justify-end">
+      <div className="flex gap-6 justify-end">
         <Button
           type='primary'
-          variation="secondary"
           disabled={disabled}
           onClick={onCloseModal}
-          className="px-6 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition"
+          className="px-6 py-2 bg-indigo-600 text-white
+           hover:bg-gray-100 rounded-lg transition"
         >
           Cancel
         </Button>

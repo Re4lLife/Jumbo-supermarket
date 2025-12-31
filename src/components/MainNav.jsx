@@ -26,7 +26,7 @@ const MainNav = () => {
     return (
         <nav ref={el} className='flex flex-col h-full'>
             <ul
-                className='flex flex-col gap-8 mt-1.5 px-1.5 h-full'>
+                className='flex flex-col mt-1.5 gap-8 px-1.5'>
                 <li>
                     <NavLink
                         to='products'
@@ -60,7 +60,7 @@ const MainNav = () => {
                 </li>
 
 
-                <li className='relative'>
+                <li className='absolute top-[80vh]'>
                     <NavLink
                         onClick={(e) => {
                             e.preventDefault();
