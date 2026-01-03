@@ -9,16 +9,18 @@ import { useQueryClient } from '@tanstack/react-query';
 
 
 
+
 const CheckOutPage = () => {
   const [searchParams] = useSearchParams();
-  const [status, setStatus] = useState('verifying');
   const reference = searchParams.get('reference');
+  const order_id = searchParams.get('order_id')
+  const [status, setStatus] = useState('verifying');
   const { user } = useUser();
   const queryClient = useQueryClient()
 
 
   useEffect(() => {
-    
+
     const verifyPayment = async () => {
       if (!reference || !user?.id) return;
 
@@ -27,9 +29,9 @@ const CheckOutPage = () => {
         .from('orders')
         .update({ status: 'paid', paystack_ref: reference })
         .select()
-        .eq('status', 'pending')
+        .eq('id', order_id)
         .eq('user_id', user.id);
-        
+
 
       if (error) {
         setStatus('error');
@@ -45,7 +47,7 @@ const CheckOutPage = () => {
     };
 
     verifyPayment();
-  }, [reference, user?.id, queryClient]);
+  }, [reference, order_id, user?.id, queryClient]);
 
   if (status === 'verifying') return <div className="p-20 text-center text-2xl">Verifying Payment...</div>;
 

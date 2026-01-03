@@ -4,12 +4,14 @@ import { getCurrentUser } from '../features/authentication/apiAuth'
 
 export function useUser() {
     const { data: user, isLoading } = useQuery({
-        queryKey: ['user'],
+        queryKey: ["user"],
         queryFn: getCurrentUser,
+
+        staleTime: 30 * 60 * 1000,
     });
 
-    // This ensures that 'isAuthenticated' is strictly true only when the user object is valid.
-     const isAuthenticated = user && user?.role === 'authenticated';
+    const isAuthenticated = user?.role === "authenticated";
 
-    return { user, isLoading, isAuthenticated }
+    
+    return { isLoading, isAuthenticated, user };
 }

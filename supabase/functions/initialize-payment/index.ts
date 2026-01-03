@@ -25,7 +25,7 @@ serve(async (req) => {
         email,
         amount: Math.round(amount * 100), // Convert to Kobo
         metadata: { order_id },
-        callback_url: `${req.headers.get('origin')}/order-confirmation`, 
+        callback_url: `${req.headers.get('origin')}/order-confirmation?order_id=${order_id}`, 
       }),
     })
 

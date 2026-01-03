@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGlobalState } from '../contexts/GlobalStateContext';
 
+
 const ToggleMenu = () => {
     //Toggle state for mobile menu
     const { setIsOpen } = useGlobalState();

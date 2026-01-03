@@ -18,10 +18,6 @@ export function useAddItemToCart() {
             toast.success('Product successfully added to cart. 🛒')
         },
 
-        onError: (err) => {
-            console.log(err.message);
-            toast.error('Please check your cart');
-        }
     });
 
     return { isAdding, addItem }
