@@ -11,14 +11,14 @@ export async function getCartItems() {
             
 
         if (error) {
-            throw new Error(error.message);
+            throw new Error(error);
         }
 
         return cart_items;
 
     } catch (err) {
         toast.error('An error occurred fetching cart items');
-        throw new Error(err.message);
+        throw new Error(err);
 
     }
 }
@@ -39,7 +39,7 @@ export async function updateQuantity({ item_id, quantity }) {
 
 
         if (error) {
-            throw new Error(error.message);
+            throw new Error(error);
         }
 
         return data;
@@ -47,7 +47,7 @@ export async function updateQuantity({ item_id, quantity }) {
 
     } catch (err) {
         toast.error('Failed to update item quantity');
-        throw new Error(err.message);
+        throw new Error(err);
 
     }
 }
@@ -63,12 +63,12 @@ export async function createCartItem(newItem) {
             .select()
             .single();
 
-        if (error) throw new Error(error.message);
+        if (error) throw new Error(error);
         return data;
 
     } catch (err) {
-        toast.error('Failed to add item to cart');
-        throw new Error(err.message);
+        toast.error('Failed to add item to cart. Please check your cart 🛒');
+        throw new Error(err);
     }
 }
 
@@ -83,13 +83,13 @@ export async function deleteCartItem(item_id) {
             .eq('item_id', item_id);
 
         if (error) {
-            throw new Error(error.message);
+            throw new Error(error);
         }
         return data;
 
     } catch (err) {
         toast.error('Failed to delete item from cart');
-        throw new Error(err.message);
+        throw new Error(err);
 
     }
 }
@@ -102,8 +102,8 @@ export const clearCart = async (userId) => {
         .eq('user_id', userId);
 
     if (error) {
-        console.error("Error clearing cart:", error.message);
         toast.error('Error clearing cart');
+        throw new Error(error);
 
     }
 };

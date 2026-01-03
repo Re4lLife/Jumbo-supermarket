@@ -5,6 +5,8 @@ import { MdDelete } from "react-icons/md";
 import { useDeleteCartItem } from '../../hooks/useDeleteCartItem';
 import ConfirmDelete from '../../components/ConfirmDelete';
 import Modal from '../../components/Modal';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -56,12 +58,22 @@ const CartItem = ({ cart_item }) => {
 
     } = useDeleteCartItem()
 
+
+
     return (
-        <div className="flex flex-col md:flex-row items-center border-b border-gray-200 py-6 hover:bg-gray-50 transition duration-150">
+        <div
+            className={`flex flex-col md:flex-row items-center border-b border-gray-200 py-6 transition duration-150 
+    ${isUpdating ?
+                    "opacity-50 pointer-events-none"
+                    :
+                    "hover:bg-gray-50"}`
+            }>
 
             {/* === 1. Product Image & Info (LEFT SIDE) === */}
-            <div className="flex items-center w-full md:w-2/5 lg:w-1/3 mb-4 md:mb-0">
-                {/* Image */}
+            {/* Image */}
+            <Link to={`/product/${item_id}`}
+                className="flex items-center w-full md:w-2/5 lg:w-1/3 mb-4 md:mb-0 group"
+            >
                 <div className="w-30 h-30 mb-4 overflow-hidden rounded-lg mr-4 flex-shrink-0">
                     <img
                         src={thumbnail}
@@ -78,7 +90,8 @@ const CartItem = ({ cart_item }) => {
                         Unit Price: {formatCurrency(discount_price)}
                     </p>
                 </div>
-            </div>
+            </Link>
+
 
 
             <div className="flex justify-between items-center w-full md:w-3/5 lg:w-2/3 space-x-6">
@@ -91,7 +104,7 @@ const CartItem = ({ cart_item }) => {
                             type='number'
                             disabled={isUpdating}
                             className="w-16 p-2 text-center border-gray-300 rounded-lg focus:border-slate-500 focus:ring-1 focus:ring-slate-500 disabled:bg-gray-100 disabled:cursor-wait"
-                            defaultValue={localQuantity}
+                            value={localQuantity}
                             onChange={(e) => setLocalQuantity(Number(e.target.value))}
                             onBlur={handleUpdate}
                             min='1'

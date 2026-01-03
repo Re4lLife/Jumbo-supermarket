@@ -37,7 +37,7 @@ const AppLayOut = () => {
 
       <aside
         className={`
-          fixed top-[100px] left-0 z-10 h-full w-48
+          fixed top-[80px] left-0 z-10 h-full w-48
           transform transition-transform duration-500 ease-in-out
           
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}

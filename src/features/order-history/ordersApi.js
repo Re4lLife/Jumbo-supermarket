@@ -4,7 +4,7 @@ import supabase from "../../supabaseClient";
 
 
 export async function getOrders() {
-    
+
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) return [];
@@ -12,7 +12,7 @@ export async function getOrders() {
     const { data, error } = await supabase
         .from('orders')
         .select('*')
-        .eq('user_id', user.id) 
+        .eq('user_id', user.id)
         .order('created_at', { ascending: false });
 
     if (error) {
@@ -21,4 +21,23 @@ export async function getOrders() {
     }
 
     return data;
+}
+
+
+
+//Gets a particular order items
+export async function getOrderDetails(id) {
+    const { data, error } = await supabase
+        .from('orders')
+        .select('*')
+        .eq('id', id)
+        .single(); // Ensures we get an object, not an array
+
+    if (error) {
+        toast.error('Error occurred fetching order details.')
+        throw new Error(error);
+    }
+
+    return data;
+
 }

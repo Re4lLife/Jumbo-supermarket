@@ -21,7 +21,7 @@ export async function getProducts() {
 
     } catch (err) {
         toast.error('Failed to load products data.');
-        throw new Error(err.message);
+        throw new Error(err);
 
     }
 }
@@ -47,7 +47,7 @@ export async function getCategories(category) {
 
     } catch (err) {
         toast.error("Failed to fetch category");
-        throw new Error(err.message);
+        throw new Error(err);
 
     }
 }
@@ -55,6 +55,8 @@ export async function getCategories(category) {
 
 //Gets product details
 export async function getProduct(id) {
+    if (!id) throw new Error("Product ID is required"); // Gaurd clause
+
     const url = `${API_URL}/products/${id}`
 
     try {
@@ -68,7 +70,7 @@ export async function getProduct(id) {
 
     } catch (err) {
         toast.error(`Could not load details for product`);
-        throw new Error(err.message);
+        throw new Error(err);
 
     }
 }

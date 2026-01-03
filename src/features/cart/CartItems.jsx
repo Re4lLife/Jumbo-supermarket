@@ -21,6 +21,7 @@ const CartItems = () => {
   const { user } = useUser();
 
 
+
   const grandTotal = useMemo(() => {
     return cart_items?.reduce(
       (sum, item) => sum + (item.discount_price * item.quantity), 0);
@@ -49,6 +50,7 @@ const CartItems = () => {
 
     }
   }
+
 
 
   return (

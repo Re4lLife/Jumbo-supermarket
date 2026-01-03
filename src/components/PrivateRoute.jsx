@@ -1,26 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom'; // 1. Import Navigate
 import { useUser } from '../hooks/useUser';
 import Loading from './Loading'
 
 const PrivateRoute = ({ children }) => {
+  const { isLoading, isAuthenticated, fetchStatus } = useUser();
 
-  const navigate = useNavigate();
-  //Load the authenticated user status
-  const { isLoading, isAuthenticated } = useUser();
-
-
-
-
-
-  if (isLoading) return <Loading />;
+  // Guard: If we are loading OR still fetching the user, do nothing but wait.
+  if (isLoading || fetchStatus === 'fetching') return <Loading />;
 
   if (!isAuthenticated) {
-    navigate('/auth/sign-in', { replace: true });
-
-    return null;
+    return <Navigate to="/auth/sign-in" replace />;
   }
-
 
   return children;
 }
