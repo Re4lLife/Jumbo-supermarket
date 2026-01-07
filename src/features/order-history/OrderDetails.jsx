@@ -18,7 +18,7 @@ const OrderDetails = () => {
     } = useOrderDetails(id);
 
 
-    if (isPending) return <Loading />;
+    if (isPending) return <Loading size='base' />;
     if (error) return <Error name='order details' />
 
 

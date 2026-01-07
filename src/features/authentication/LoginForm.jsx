@@ -47,8 +47,9 @@ const LoginForm = () => {
         }
     }
 
-    return (
 
+    
+    return (
         <form
             className='w-full max-w-6xl text-center rounded-2xl shadow-2xl py-5 px-10 flex flex-col items-center'
             onSubmit={handleSubmit(onSubmit)}>
@@ -87,7 +88,7 @@ const LoginForm = () => {
             <Button
                 type='primary'
                 disabled={isLoading}>
-                {isLoading ? <Loading /> : 'Login'}
+                {isLoading ? <Loading size='small' /> : 'Login'}
             </Button>
         </form>
 

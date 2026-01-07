@@ -6,6 +6,7 @@ import Button from '../../components/Button';
 import { signUp } from './apiAuth';
 import toast from 'react-hot-toast';
 import { useLogOut } from '../../hooks/useLogOut';
+import Loading from '../../components/Loading';
 
 
 
@@ -115,7 +116,7 @@ const SignupForm = () => {
       <Button
         type='primary'
         disabled={isLoading}>
-        {isLoading || isLoggingOut ? 'Loading...' : 'Sign Up'}
+        {isLoading || isLoggingOut ? <Loading size='small' /> : 'Sign Up'}
       </Button>
     </form>
   );

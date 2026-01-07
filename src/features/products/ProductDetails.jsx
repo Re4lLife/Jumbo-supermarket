@@ -38,7 +38,7 @@ const ProductDetails = () => {
     const productId = Number(id);
 
 
-    if (isLoading) return <Loading />;
+    if (isLoading) return <Loading size='base' />;
     if (error) return <Error name={`product details`} />;
     if (!productDetails) return <p className='my-auto text-center'>Product not found.</p>;
 
@@ -199,7 +199,7 @@ const ProductDetails = () => {
                                     disabled={isAdding}
                                     className="w-full text-lg font-semibold py-3 rounded-xl transition duration-300 shadow-md bg-indigo-600 hover:bg-indigo-700"
                                 >
-                                    {isAdding ? 'Adding...' : 'Add to Cart'}
+                                    {isAdding ? <Loading size='small' /> : 'Add to Cart'}
                                 </Button>
                             )}
                         </div>

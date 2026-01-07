@@ -104,7 +104,7 @@ const UpdateProfileForm = ({ onCloseModal }) => {
 
 
                 <button className='bg-green-600 tracking-wide text-white py-2 px-6 rounded-md' disabled={isUpdating}>
-                    {isUpdating ? "Saving..." : "Save"}
+                    {isUpdating ? <Loading size='small' /> : "Save"}
                 </button>
             </div>
         </form >
