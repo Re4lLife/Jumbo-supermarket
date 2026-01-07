@@ -9,6 +9,7 @@ import { RiShoppingBag2Fill } from "react-icons/ri";
 import { handleCheckout } from '../../hooks/useCheckout';
 import { useUser } from '../../hooks/useUser';
 
+
 const CartItems = () => {
   const [isCheckingOut, setIsCheckingOut] = useState(false); //Just for a 'loading' in the 'proceed to checkout' button.
   const {
@@ -28,7 +29,7 @@ const CartItems = () => {
   }, [cart_items]);
 
 
-  if (isLoading) return <Loading />
+  if (isLoading) return <Loading size='base' />
   if (error) return <Error name='cart items' />
   if (!cart_items || cart_items.length === 0) {
     return (
@@ -91,7 +92,7 @@ const CartItems = () => {
               disabled={isCheckingOut}
               className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700"
               >
-              {isCheckingOut ? 'Loading...' : 'Proceed to Checkout'}
+              {isCheckingOut ? <Loading size='small' /> : 'Proceed to Checkout'}
             </Button>
           </div>
         </div>

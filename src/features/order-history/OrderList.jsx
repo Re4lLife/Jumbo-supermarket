@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const OrderList = () => {
   const { orders, isPending, error } = useOrders();
 
-  if (isPending) return <div className="p-10 text-center"> <Loading /> </div>;
+  if (isPending) return <div className="p-10 text-center"> <Loading size='base' /> </div>;
   if (error) return <div className="text-center"> <Error name='order history' /> </div>;
 
 

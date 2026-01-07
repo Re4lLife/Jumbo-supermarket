@@ -16,7 +16,7 @@ const ProfileDropDown = () => {
     const close = () => setIsOpen(false);
     const el = useClickOut(close);
 
-    if (isLoading) return <Loading />;
+    if (isLoading) return <Loading size='base' />;
     if (error) return (
         <div className='mt-[-200px] w-[100px]'>
             <Error />

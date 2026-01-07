@@ -27,7 +27,7 @@ const ProductList = () => {
 
 
 
-    if (isLoading) return <Loading />;
+    if (isLoading) return <Loading size='base' />;
     if (error) return <Error name='products' />;
     if (!products || !products.length) return (
         <div className='my-auto text-center'>

@@ -12,11 +12,11 @@ const Profile = () => {
     
     const navigate = useNavigate();
 
-    if (isLoading) return <Loading />;
+    if (isLoading) return <Loading size='base' />;
 
     const { email, fullName, imageUrl, number, address } = profile;
 
-    console.log(imageUrl, email, fullName)
+   
 
     return (
         <div>

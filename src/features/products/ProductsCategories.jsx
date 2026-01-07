@@ -10,7 +10,7 @@ const ProductsCategories = () => {
     const { setActiveCategory } = useGlobalState();
     const { setIsOpen } = useGlobalState();
 
-    if (isLoading) return <Loading />
+    if (isLoading) return <Loading size='base' />
     if (error) return <Error name='categories' />
 
     // Add 'all' category option to the beginning of the list
