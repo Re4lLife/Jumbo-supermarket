@@ -10,6 +10,7 @@ Buy from the comfort of your home. This project is a modern e-commerce platform 
 
 ## Features
 - User Authentication
+- View product details
 - Persistent shopping cart
 - Customer Order History
 - Seamless Checkout
