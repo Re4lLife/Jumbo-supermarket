@@ -17,22 +17,22 @@ Buy from the comfort of your home. This project is a modern e-commerce platform 
 
 ## Installation & Setup
 
-###Prerequisite:
+### Prerequisite:
 Ensure you have Node.js (version 22 or higher) installed.
 
 
-###Clone the repository:
+### Clone the repository:
 ```bash
 git clone https://github.com/Re4lLife/Jumbo-supermarket
 cd Jumbo-supermarket
 ```
 
-###Install dependencies:
+### Install dependencies:
 ```bash
 npm install
 ```
 
-###Run the development server:
+### Run the development server:
 ```bash
 npm run dev
 ```
