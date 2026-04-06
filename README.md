@@ -15,26 +15,6 @@ Buy from the comfort of your home. This project is a modern e-commerce platform 
 - Customer Order History
 - Seamless Checkout
 
-## Installation & Setup
+## Try It Out 👇
 
-### Prerequisite:
-Ensure you have Node.js (version 22 or higher) installed.
-
-
-### Clone the repository:
-```bash
-git clone https://github.com/Re4lLife/Jumbo-supermarket
-cd Jumbo-supermarket
-```
-
-### Install dependencies:
-```bash
-npm install
-```
-
-### Run the development server:
-```bash
-npm run dev
-```
-
-
+jumbo[https://jumbo-supermarket.vercel.app/]
