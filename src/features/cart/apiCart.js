@@ -2,13 +2,14 @@ import toast from 'react-hot-toast';
 import supabase from '../../supabaseClient';
 
 
-export async function getCartItems() {
+export async function getCartItems(userId) {
 
     try {
         let { data: cart_items, error } = await supabase
             .from('cart_items')
             .select('*')
-            
+            .eq('user_id', userId);
+
 
         if (error) {
             throw new Error(error);
@@ -26,7 +27,7 @@ export async function getCartItems() {
 
 
 
-export async function updateQuantity({ item_id, quantity }) {
+export async function updateQuantity({ item_id, quantity, userId }) {
     try {
 
         const { data, error } = await supabase
@@ -35,7 +36,8 @@ export async function updateQuantity({ item_id, quantity }) {
             .update({ quantity: quantity })
             // Use 'item_id' to target the correct row 
             .eq('item_id', item_id)
-            .select()
+            .eq('user_id', userId)
+            .select();
 
 
         if (error) {
@@ -75,12 +77,13 @@ export async function createCartItem(newItem) {
 
 
 
-export async function deleteCartItem(item_id) {
+export async function deleteCartItem({ item_id, userId }) {
     try {
         const { data, error } = await supabase
             .from('cart_items')
             .delete()
-            .eq('item_id', item_id);
+            .eq('item_id', item_id)
+            .eq('user_id', userId);
 
         if (error) {
             throw new Error(error);

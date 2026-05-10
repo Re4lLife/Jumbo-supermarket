@@ -10,6 +10,7 @@ import { useDeleteCartItem } from '../../hooks/useDeleteCartItem';
 import { useCartItems } from '../../hooks/useCartItems';
 import Modal from '../../components/Modal';
 import ConfirmDelete from '../../components/ConfirmDelete';
+import { useUser } from '../../hooks/useUser';
 
 
 const ProductDetails = () => {
@@ -33,6 +34,7 @@ const ProductDetails = () => {
         cart_items
 
     } = useCartItems();
+    const { user } = useUser();
 
 
     const productId = Number(id);
@@ -67,7 +69,8 @@ const ProductDetails = () => {
                 title: productDetails.title,
                 discount_price: finalPrice,
                 brand: productDetails.brand,
-                thumbnail: productDetails.images[0]
+                thumbnail: productDetails.images[0],
+                user_id: user?.id,
 
             };
             addItem(newItem);
@@ -186,7 +189,7 @@ const ProductDetails = () => {
                                             <ConfirmDelete
                                                 title={title}
                                                 disabled={isDeleting}
-                                                onConfirm={() => deleteItem(productId)}
+                                                onConfirm={() => deleteItem({item_id: productId, userId: user?.id})}
                                             />
                                         </Modal.Window>
                                     </Modal>

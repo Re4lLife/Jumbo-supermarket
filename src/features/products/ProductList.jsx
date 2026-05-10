@@ -11,19 +11,29 @@ import useFilteredProducts from '../../hooks/useFilteredProducts';
 import { useGlobalState } from '../../contexts/GlobalStateContext';
 
 const ProductList = () => {
-    const { 
+    const [swiperKey, setSwiperKey] = React.useState('desktop');
+
+    //Handle change of key state for Swiper to remount when browser minimizes and maximizes suddenly.
+    React.useEffect(() => {
+        const mq = window.matchMedia('(min-width: 1024px)');
+        const handler = (e) => setSwiperKey(e.matches ? 'desktop' : 'mobile');
+        mq.addEventListener('change', handler);
+        return () => mq.removeEventListener('change', handler);
+    }, []);
+
+    const {
         searchTerm
-     } = useGlobalState();
+    } = useGlobalState();
 
 
-    const { 
+    const {
         isLoading,
         error,
         products: allAndCategorizedProducts,
-     } = useProducts();
+    } = useProducts();
 
 
-     const products = useFilteredProducts({ products: allAndCategorizedProducts, searchTerm });
+    const products = useFilteredProducts({ products: allAndCategorizedProducts, searchTerm });
 
 
 
@@ -37,45 +47,43 @@ const ProductList = () => {
 
     return (
         <Swiper
+            key={swiperKey}
             modules={[Pagination, Autoplay, Grid]}
 
             className="h-[80vh] sm:h-[75vh] lg:h-[82vh] w-full"
             // className="h-[500px] sm:h-[550px] lg:h-[550px] w-full" 
             grid={{
-                rows: 2, 
+                rows: 2,
                 fill: 'row',
             }}
- 
+
             navigation={true}
 
             pagination={{ clickable: true }}
 
             autoplay={{ delay: 4000, disableOnInteraction: false }}
 
-            spaceBetween={20} 
+            spaceBetween={20}
 
-            slidesPerView={2} 
-            
+            slidesPerView={2}
+
             breakpoints={{
-                
+
                 640: {
                     slidesPerView: 3,
                     spaceBetween: 30,
                 },
-                
+
                 1024: {
                     slidesPerView: 5,
                     spaceBetween: 40,
                 },
-            }}
-        >
-            <div className='h-full w-full'>
-                {products.map((product) => (
-                    <SwiperSlide key={product.id}>
-                        <ProductItem product={product} />
-                    </SwiperSlide>
-                ))}
-            </div>
+            }}>
+            {products.map((product) => (
+                <SwiperSlide key={product.id}>
+                    <ProductItem product={product} />
+                </SwiperSlide>
+            ))}
         </Swiper>
     );
 };

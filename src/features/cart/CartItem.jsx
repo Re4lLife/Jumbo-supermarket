@@ -6,6 +6,7 @@ import { useDeleteCartItem } from '../../hooks/useDeleteCartItem';
 import ConfirmDelete from '../../components/ConfirmDelete';
 import Modal from '../../components/Modal';
 import { Link } from 'react-router-dom';
+import { useUser } from '../../hooks/useUser';
 
 
 
@@ -27,14 +28,10 @@ const CartItem = ({ cart_item }) => {
     // Calculate Line Item Subtotal (Quantity * Unit Price)
     const lineTotal = discount_price * quantity;
 
-    const {
-        updateQuantity,
-        isUpdating,
-
-    } = useUpdateQuantity();
-
-
+    const { updateQuantity, isUpdating } = useUpdateQuantity();
     const [localQuantity, setLocalQuantity] = useState(quantity);
+    const { isDeleting, deleteItem } = useDeleteCartItem();
+    const { user } = useUser();
 
 
     function handleUpdate(e) {
@@ -48,15 +45,11 @@ const CartItem = ({ cart_item }) => {
 
 
         if (newQuantity !== quantity) {
-            updateQuantity({ item_id, quantity: newQuantity });
+            updateQuantity({ item_id, quantity: newQuantity, userId: user?.id });
         }
     }
 
-    const {
-        isDeleting,
-        deleteItem
-
-    } = useDeleteCartItem()
+    
 
 
 
@@ -135,7 +128,7 @@ const CartItem = ({ cart_item }) => {
                         <ConfirmDelete
                             thumbnail={thumbnail}
                             disabled={isDeleting}
-                            onConfirm={() => deleteItem(item_id)}
+                            onConfirm={() => deleteItem({ item_id, userId: user?.id })}
                             title={title}
                         />
                     </Modal.Window>

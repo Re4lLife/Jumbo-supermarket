@@ -6,14 +6,13 @@ export function useDeleteCartItem() {
     const queryClient = useQueryClient();
 
     const { mutate: deleteItem, isPending: isDeleting } = useMutation({
-        mutationFn: deleteCartItemApi,
+        mutationFn: ({ item_id, userId }) => deleteCartItemApi({ item_id, userId }),
 
         onSuccess: () => {
             toast.success('Item removed from cart');
             queryClient.invalidateQueries({ queryKey: ['cart_items'] });
         },
 
-        onError: (err) => toast.error(err.message),
     });
 
     return { isDeleting, deleteItem };
