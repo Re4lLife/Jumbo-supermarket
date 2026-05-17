@@ -7,6 +7,7 @@ _Buy from the comfort of your home. This project is a modern e-commerce platform
 - **Frontend Library:** React.js
 - **Styling:** Tailwind CSS
 - **Database:** PostgreSQL
+- **Payment Integration:** PayStack
 - **Infrastructure:** Supabase Storage
 
 ## Features
