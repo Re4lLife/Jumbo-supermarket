@@ -1,7 +1,7 @@
 # Jumbo supermarket
 _Buy from the comfort of your home. This project is a modern e-commerce platform designed to bring the shop to the user with a seamless, responsive shopping experience_
 
-[jumbo.png](https://postimg.cc/CnH6L78F)
+[![jumbo.png](https://i.postimg.cc/mk0xj62F/jumbo.png)](https://postimg.cc/CnH6L78F)
 
 ## Tech Stack
 - **Frontend Library:** React.js
