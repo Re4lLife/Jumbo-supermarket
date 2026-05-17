@@ -1,20 +1,23 @@
-# Jumbo Supermarket
+# Jumbo supermarket
+_Buy from the comfort of your home. This project is a modern e-commerce platform designed to bring the shop to the user with a seamless, responsive shopping experience_
 
-Buy from the comfort of your home. This project is a modern e-commerce platform designed to bring the store to the user's doorstep with a seamless, responsive shopping experience.
+[jumbo.png](https://postimg.cc/CnH6L78F)
 
 ## Tech Stack
-- React
-- Tailwind CSS
-- Supabase
-- Paystack
+- **Frontend Library:** React.js
+- **Styling:** Tailwind CSS
+- **Database:** PostgreSQL
+- **Infrastructure:** Supabase Storage
 
 ## Features
 - User Authentication
-- View product details
+- Dynamic Product Browsing
 - Persistent shopping cart
 - Customer Order History
 - Seamless Checkout
 
-## Try It Out 👇
+## Demo 
+https://github.com/user-attachments/assets/8b13fc53-ea24-4d63-9cd0-9af0e06c3999
 
-jumbo[https://jumbo-supermarket.vercel.app/]
+## Live 🌐
+[Jumbo](https://jumbo-supermarket.vercel.app/)
